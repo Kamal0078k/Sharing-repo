@@ -6,6 +6,7 @@ import { QrReader } from "react-qr-reader";
 const Send = () => {
   const [receiverId, setReceiverId] = useState(null);
   const peerRef = useRef(null);
+  const [scan, setScan] = useState(false);
   const qrRef = useRef(null);
   const [file, setFile] = useState(null);
   const [qrcodevalue, setQrcodevlaue] = useState(null);
@@ -29,25 +30,36 @@ const Send = () => {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <button>Scan</button>
-      <div className="h-10 w-80">
-        <QrReader
-          onResult={(result, error) => {
-            if (!result) {
-              setQrcodevlaue(result?.text);
-            }
+      <button
+        onClick={() => {
+          setScan(!scan);
+        }}
+      >
+        Scan
+      </button>
+      {scan && (
+        <div className="h-10 w-80">
+          <QrReader
+            onResult={(result, error) => {
+              if (!!result) {
+                setReceiverId(result?.text);
+              }
 
-            if (!error) {
-              console.log(error);
-            }
-          }}
-          style={{ width: "100%" }}
-          scanDelay={300}
-        />
-      </div>
+              if (!!error) {
+                console.log(error);
+              }
+            }}
+            constraints={{
+              facingMode: "environment",
+            }}
+            style={{ width: "100%" }}
+            scanDelay={300}
+          />
+        </div>
+      )}
 
       <div className="h-80"></div>
-      <div>{qrcodevalue}</div>
+      {receiverId && <div>{receiverId}</div>}
       <label>ReceiverID:</label>
       <input
         type="text"
