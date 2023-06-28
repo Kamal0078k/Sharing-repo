@@ -58,7 +58,7 @@ const Receive = () => {
           <p className="font-sans mt-2">{receiverId}</p>
           <div className="font-sans mt-2">Files Received :</div>
           {receivedName && (
-            <div className="text-center border-2 px-2 rounded-md">
+            <div className="text-center border-2 px-2 rounded-md w-72">
               {" "}
               {receivedName}
             </div>

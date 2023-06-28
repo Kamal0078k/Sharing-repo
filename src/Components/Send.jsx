@@ -72,7 +72,7 @@ const Send = () => {
           }}
         />
         <input
-          className="mt-5 border-2 rounded-lg border-[#b5b5b5]"
+          className="mt-5 border-2 rounded-lg  border-[#b5b5b5]"
           type="file"
           onChange={(e) => {
             setFile(e.target.files[0]);
