@@ -29,7 +29,7 @@ const Send = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center w-screen h-screen items-center bg-share">
       <button
         onClick={() => {
           setScan(!scan);
