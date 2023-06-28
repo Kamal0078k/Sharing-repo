@@ -45,7 +45,7 @@ const Receive = () => {
         <div className="w-[100%] flex items-center justify-center">
           <img src={receiver} alt="" />
         </div>
-        <div className="flex flex-col items-center justify-center mt-40 sm:mt-28 lg:mt-10 xl:mt-0">
+        <div className="flex flex-col items-center justify-center mt-36 sm:mt-28 lg:mt-10 xl:mt-0">
           {receiverId && (
             <QRCode
               title="GeeksForGeeks"
