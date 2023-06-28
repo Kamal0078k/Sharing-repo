@@ -34,7 +34,7 @@ const Receive = () => {
   const downloadFile = () => {
     const link = document.createElement("a");
     link.href = URL.createObjectURL(receivedFile);
-    link.download = `receiver.${ext}`;
+    link.download = `${receivedName}`;
     link.type = "application/octet-stream";
     link.click();
   };
@@ -45,7 +45,7 @@ const Receive = () => {
         <div className="w-[100%] flex items-center justify-center">
           <img src={receiver} alt="" />
         </div>
-        <div className="flex flex-col items-center justify-center mt-52 sm:mt-28 lg:mt-10 xl:mt-0">
+        <div className="flex flex-col items-center justify-center mt-40 sm:mt-28 lg:mt-10 xl:mt-0">
           {receiverId && (
             <QRCode
               title="GeeksForGeeks"
@@ -55,9 +55,20 @@ const Receive = () => {
               size={156}
             />
           )}
-          <p>{receiverId}</p>
-          {receivedName && <div>{receivedName}</div>}
-          <button onClick={downloadFile}>Download</button>
+          <p className="font-sans mt-2">{receiverId}</p>
+          <div className="font-sans mt-2">Files Received :</div>
+          {receivedName && (
+            <div className="text-center border-2 px-2 rounded-md">
+              {" "}
+              {receivedName}
+            </div>
+          )}
+          <button
+            className="text-[#ffffff] w-40 h-10 mt-5 bg-[#000000] border-2  hover:text-[#000000] hover:bg-share"
+            onClick={downloadFile}
+          >
+            Download Files
+          </button>
         </div>
       </div>
     </div>
