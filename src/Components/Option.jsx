@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import send from "./../assets/send.png";
-import recieve from "./../assets/RECEIVE.svg";
+import recieve from "./../assets/receive.png";
 
 const Option = () => {
   return (

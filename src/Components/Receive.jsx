@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import QRCode from "react-qr-code";
 import Peer from "peerjs";
-import receiver from "./../assets/receiver.svg";
+import receiver from "./../assets/receiver.png";
 
 const Receive = () => {
   const [receiverId, setReceiverID] = useState(null);
@@ -42,7 +42,7 @@ const Receive = () => {
   return (
     <div className="bg-share w-screen h-screen flex flex-col items-center justify-center ">
       <div className="h-[94vh] w-[88vw]   xl:h-[90vh] xl:w-[95vw] sm:h-[90vh] sm:w-[93vw] border-2 rounded-xl ">
-        <div>
+        <div className="w-[100%] flex items-center justify-center">
           <img src={receiver} alt="" />
         </div>
         <div className="flex flex-col items-center justify-center mt-52 sm:mt-28 lg:mt-10 xl:mt-0">
