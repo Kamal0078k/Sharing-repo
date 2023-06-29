@@ -5,18 +5,14 @@ import recieve from "./../assets/receive.png";
 
 const Option = () => {
   return (
-    <div className="h-screen w-screen bg-share flex flex-col items-center justify-center ">
-      <div className="h-[90vh] w-[85vw]   xl:h-[90vh] xl:w-[95vw] sm:h-[90vh] sm:w-[93vw] border-2 rounded-xl flex flex-col justify-center items-center">
-        <div className="w-20  sm:w-32     flex items-center justify-center">
-          <Link to="/send">
-            <img src={send} className="w-72  " />
-          </Link>
-        </div>
-        <div className="w-32 sm:w-56     flex items-center justify-center">
-          <Link to="/receive">
-            <img src={recieve} className="w-96" />
-          </Link>
-        </div>
+    <div className="h-screen w-screen bg-[#eae8f2] flex flex-col items-center justify-center ">
+      <div className="flex flex-col items-center justify-center bg-[#ffffff] w-72 rounded-xl py-10 shadow-lg	">
+        <button className="bg-[#f4f4f4] w-52 rounded-xl hover:bg-[#fc6b68] active:bg-[#fc6b68] focus:bg-[#fc6b68]  hover:text-[#ffffff] active:shadow-xl active:text-[#ffffff] hover:shadow-xl text-3xl py-3">
+          <Link to="/send">Send</Link>
+        </button>
+        <button className="bg-[#f4f4f4] w-52 rounded-xl hover:bg-[#fc6b68] mt-5  hover:text-[#ffffff] hover:shadow-xl text-3xl py-3">
+          <Link to="/receive">Receive</Link>
+        </button>
       </div>
     </div>
   );

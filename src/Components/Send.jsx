@@ -46,16 +46,16 @@ const Send = () => {
   };
 
   return (
-    <div className="bg-share h-screen w-screen flex items-center justify-center">
-      <div className="h-[94vh] w-[88vw]  xl:h-[90vh] xl:w-[95vw] sm:h-[90vh] sm:w-[93vw] border-2 rounded-xl flex items-center justify-center flex-col ">
+    <div className="bg-[#eae8f2] h-screen w-screen flex items-center justify-center">
+      <div className=" bg-[#ffffff] rounded-xl flex items-center justify-center flex-col py-5 px-5 shadow-lg ">
         <div>Press Scan to Scan receiver qr-code</div>
         <button
-          className="text-[#ffffff]  rounded-lg w-40 h-10 mt-2 bg-[#000000] border-2  hover:text-[#000000]  hover:bg-share"
+          className="bg-[#f4f4f4] w-36  shadow-md rounded-xl hover:bg-[#fc6b68] mt-5  hover:text-[#ffffff] hover:shadow-xl text-2xl py-2"
           onClick={() => {
             setScan(!scan);
           }}
         >
-          Scan
+          Scan Qr
         </button>
         {scan && (
           <div className="h-80 w-80">
@@ -79,9 +79,9 @@ const Send = () => {
           </div>
         )}
 
-        <label>ReceiverID:</label>
+        <label className="mt-3">ReceiverID:</label>
         <input
-          className="bg-share border-2 border-[#b5b5b5] rounded-lg w-72"
+          className="bg-[#f4f4f4] p-1   rounded-lg w-52"
           type="text"
           value={receiverId}
           onChange={(e) => {
@@ -89,7 +89,7 @@ const Send = () => {
           }}
         />
         <input
-          className="mt-5 border-2 rounded-lg  border-[#b5b5b5]"
+          className="mt-5  rounded-sm w-56"
           type="file"
           multiple
           onChange={(e) => {
@@ -97,7 +97,8 @@ const Send = () => {
           }}
         />
         <button
-          className="text-[#ffffff]  rounded-lg w-40 h-10 mt-5 bg-[#000000] border-2  hover:text-[#000000]  hover:bg-share"
+          // className="text-[#ffffff]  rounded-lg w-40 h-10 mt-5 bg-[#000000] border-2  hover:text-[#000000]  hover:bg-share"
+          className="bg-[#f4f4f4] shadow-md w-36 rounded-xl hover:bg-[#fc6b68] mt-5  hover:text-[#ffffff] hover:shadow-xl text-2xl py-2"
           onClick={sendFiles}
         >
           Send

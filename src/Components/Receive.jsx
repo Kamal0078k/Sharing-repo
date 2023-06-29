@@ -76,36 +76,31 @@ const Receive = () => {
   };
 
   return (
-    <div className="bg-share w-screen h-screen flex flex-col items-center justify-center ">
-      <div className="h-[94vh] w-[88vw]   xl:h-[90vh] xl:w-[95vw] sm:h-[90vh] sm:w-[93vw] border-2 rounded-xl ">
-        <div className="w-[100%] flex items-center justify-center">
-          <img src={receiver} alt="" />
-        </div>
-        <div className="flex flex-col items-center justify-center mt-36 sm:mt-28 lg:mt-10 xl:mt-0">
-          {receiverId && (
-            <QRCode
-              title="GeeksForGeeks"
-              value={receiverId}
-              bgColor={"#FFFFFF"}
-              fgColor={"#000000"}
-              size={156}
-            />
-          )}
-          <p className="font-sans mt-2">{receiverId}</p>
-          <div>Receiving....{progress}%</div>
-          <div className="font-sans mt-2">Files Received :</div>
-          {receivedName.length > 0 &&
-            receivedName.map((e) => {
-              return <div>{e}</div>;
-            })}
+    <div className="bg-[#eae8f2] h-screen flex flex-col items-center justify-center ">
+      <div className="flex flex-col items-center justify-center py-10 rounded-xl px-5 bg-[#ffffff]">
+        {receiverId && (
+          <QRCode
+            title="GeeksForGeeks"
+            value={receiverId}
+            bgColor={"#FFFFFF"}
+            fgColor={"#000000"}
+            size={156}
+          />
+        )}
+        <p className="font-sans mt-2">{receiverId}</p>
+        <div>Receiving....{progress}%</div>
+        <div className="font-sans mt-2">Files Received :</div>
+        {receivedName.length > 0 &&
+          receivedName.map((e) => {
+            return <div>{e}</div>;
+          })}
 
-          <button
-            className="text-[#ffffff] w-40 h-10 mt-5 bg-[#000000] border-2  hover:text-[#000000] hover:bg-share"
-            onClick={downloadFile}
-          >
-            Download Files
-          </button>
-        </div>
+        <button
+          className="bg-[#f4f4f4] w-52  shadow-md rounded-xl hover:bg-[#fc6b68] mt-5  hover:text-[#ffffff] hover:shadow-xl text-2xl py-2"
+          onClick={downloadFile}
+        >
+          Download Files
+        </button>
       </div>
     </div>
   );
