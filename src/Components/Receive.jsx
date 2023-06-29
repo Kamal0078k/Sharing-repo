@@ -87,7 +87,7 @@ const Receive = () => {
             size={156}
           />
         )}
-        <p className="font-sans mt-2">{receiverId}</p>
+        <p className="font-sans mt-2 text-xs">{receiverId}</p>
         <div>Receiving....{progress}%</div>
         <div className="font-sans mt-2">Files Received :</div>
         {receivedName.length > 0 &&
