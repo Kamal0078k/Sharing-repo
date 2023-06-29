@@ -4,12 +4,12 @@ import Peer from "peerjs";
 import { QrReader } from "react-qr-reader";
 
 const Send = () => {
-  const [receiverId, setReceiverId] = useState(null);
+  const [receiverId, setReceiverId] = useState("");
   const peerRef = useRef(null);
   const [scan, setScan] = useState(false);
-  const qrRef = useRef(null);
+  const [progress, setProgress] = useState(0);
+  const [files, setFiles] = useState(null);
   const [file, setFile] = useState(null);
-  const [qrcodevalue, setQrcodevlaue] = useState(null);
 
   useEffect(() => {
     var peer = new Peer();
@@ -20,10 +20,27 @@ const Send = () => {
   });
 
   const sendFiles = () => {
-    if (file) {
-      var conn = peerRef.current.connect(`${receiverId}`);
-      conn.on("open", function () {
-        conn.send([file, file.name]);
+    var conn = peerRef.current.connect(`${receiverId}`);
+    if (files != null) {
+      conn.on("open", () => {
+        for (let j = 0; j < files.length; j++) {
+          const chunkSize = 1024 * 1024; // In bytes
+          const chunks = Math.ceil(files[j].size / chunkSize);
+          console.log(files[j].size);
+          var pro = 0;
+          for (let i = 0; i < chunks; i++) {
+            const offset = i * chunkSize;
+            pro = ((i + 1) / chunks) * 100;
+            setProgress(pro);
+            conn.send({
+              file: files[j].slice(offset, offset + chunkSize),
+              name: files[j].name,
+              size: files[j].size,
+              type: "file",
+              progress: ((i + 1) / chunks) * 100,
+            });
+          }
+        }
       });
     }
   };
@@ -74,8 +91,9 @@ const Send = () => {
         <input
           className="mt-5 border-2 rounded-lg  border-[#b5b5b5]"
           type="file"
+          multiple
           onChange={(e) => {
-            setFile(e.target.files[0]);
+            setFiles(e.target.files);
           }}
         />
         <button
@@ -84,6 +102,7 @@ const Send = () => {
         >
           Send
         </button>
+        {progress == 100 && <div>Sent Succesfully</div>}
       </div>
     </div>
   );
