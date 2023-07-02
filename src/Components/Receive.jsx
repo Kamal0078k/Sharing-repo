@@ -5,74 +5,84 @@ import receiver from "./../assets/receiver.png";
 
 const Receive = () => {
   const [receiverId, setReceiverID] = useState(null);
-  const [receivedFile, setReceivedFile] = useState([]);
-  const [chunk, setChunk] = useState([]);
-  const [combined, setCombined] = useState(null);
+  const [receivedFile, setReceivedFile] = useState(null);
+  // const [chunk, setChunk] = useState([]);
+  // const [combined, setCombined] = useState(null);
 
-  const [progress, setProgress] = useState(null);
-
-  const [receivedName, setReceivedName] = useState([]);
+  // const [progress, setProgress] = useState(null);
+  const [receivedName, setReceivedName] = useState(null);
   useEffect(() => {
     var peer = new Peer();
-
     peer.on("open", function (id) {
       setReceiverID(id);
-      console.log(id);
     });
 
     peer.on("connection", (conn) => {
-      var chunk = [];
+      // var chunk = [];
+
       conn.on("data", (data) => {
-        chunk = [...chunk, data.file];
-        setProgress(data.progress);
-        if (data.progress == 100) {
-          console.log(data);
-          combineTheChunks(chunk);
-          chunk = [];
-          setProgress(0);
-          setReceivedName((prevname) => [...prevname, data.name]);
-        }
+        console.log(data.file);
+        // changefile(data.file);
+        // setReceivedName(data.className);
+        // chunk = [...chunk, data.file];
+        // setProgress(data.progress);
+        // if (data.progress == 100) {
+        //   console.log(data);
+        //   combineTheChunks(chunk);
+        //   chunk = [];
+        //   setProgress(0);
+        //   setReceivedName((prevname) => [...prevname, data.name]);
+        // }
 
         // setProgress(data.progress);
-        // setReceivedName(data.name);
-
-        // const uint8Array = new Uint8Array(data.file);
-        // const blob = new Blob([uint8Array]);
-        // const file = new File([blob], `received`);
-        // setReceivedFile(file);
+        setReceivedName(data.name);
+        const dataa = data.file;
+        const uint8Array = new Uint8Array(dataa);
+        const blob = new Blob([uint8Array]);
+        const file = new File([blob], `received`);
+        setReceivedFile(file);
+        console.log(receivedFile);
       });
     });
   }, []);
 
-  const combineTheChunks = (chunks) => {
-    const totalLength = chunks.reduce(
-      (length, chunk) => length + chunk.byteLength,
-      0
-    );
-    const combined = new Uint8Array(totalLength);
-    let offset = 0;
-
-    chunks.forEach((chunk) => {
-      combined.set(new Uint8Array(chunk), offset);
-      offset += chunk.byteLength;
-    });
-
-    console.log(combined.buffer);
-
-    const uint8Array = new Uint8Array(combined.buffer);
+  const changefile = (array) => {
+    const uint8Array = new Uint8Array(array);
     const blob = new Blob([uint8Array]);
     const file = new File([blob], `received`);
-    setReceivedFile((prevrec) => [...prevrec, file]);
+    setReceivedFile(file);
+    console.log(receivedFile);
   };
 
+  // const combineTheChunks = (chunks) => {
+  //   const totalLength = chunks.reduce(
+  //     (length, chunk) => length + chunk.byteLength,
+  //     0
+  //   );
+  //   const combined = new Uint8Array(totalLength);
+  //   let offset = 0;
+
+  //   chunks.forEach((chunk) => {
+  //     combined.set(new Uint8Array(chunk), offset);
+  //     offset += chunk.byteLength;
+  //   });
+
+  //   console.log(combined.buffer);
+
+  //   const uint8Array = new Uint8Array(combined.buffer);
+  //   const blob = new Blob([uint8Array]);
+  //   const file = new File([blob], `received`);
+  //   setReceivedFile((prevrec) => [...prevrec, file]);
+  // };
+
   const downloadFile = () => {
-    for (let i = 0; i < receivedFile.length; i++) {
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(receivedFile[i]);
-      link.download = `${receivedName[i]}`;
-      link.type = "application/octet-stream";
-      link.click();
-    }
+    // for (let i = 0; i < receivedFile.length; i++) {
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(receivedFile);
+    link.download = `${receivedName}`;
+    link.type = "application/octet-stream";
+    link.click();
+    // }
   };
 
   return (
@@ -88,12 +98,14 @@ const Receive = () => {
           />
         )}
         <p className="font-sans mt-2 text-xs">{receiverId}</p>
-        <div>Receiving....{progress}%</div>
+        {/* <div>Receiving....{progress}%</div> */}
         <div className="font-sans mt-2">Files Received :</div>
-        {receivedName.length > 0 &&
-          receivedName.map((e) => {
-            return <div>{e}</div>;
-          })}
+        {receivedName && (
+          // receivedName.map((e) => {
+          //   return <div>{e}</div>;
+          // })
+          <div>{receivedName}</div>
+        )}
 
         <button
           className="bg-[#f4f4f4] w-52  shadow-md rounded-xl hover:bg-[#fc6b68] mt-5  hover:text-[#ffffff] hover:shadow-xl text-2xl py-2"

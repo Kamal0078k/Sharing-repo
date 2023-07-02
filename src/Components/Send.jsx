@@ -23,24 +23,25 @@ const Send = () => {
     var conn = peerRef.current.connect(`${receiverId}`);
     if (files != null) {
       conn.on("open", () => {
-        for (let j = 0; j < files.length; j++) {
-          const chunkSize = 1024 * 1024; // In bytes
-          const chunks = Math.ceil(files[j].size / chunkSize);
-          console.log(files[j].size);
-          var pro = 0;
-          for (let i = 0; i < chunks; i++) {
-            const offset = i * chunkSize;
-            pro = ((i + 1) / chunks) * 100;
-            setProgress(pro);
-            conn.send({
-              file: files[j].slice(offset, offset + chunkSize),
-              name: files[j].name,
-              size: files[j].size,
-              type: "file",
-              progress: ((i + 1) / chunks) * 100,
-            });
-          }
-        }
+        // for (let j = 0; j < files.length; j++) {
+        // const chunkSize = 1024 * 1024; // In bytes
+        // const chunks = Math.ceil(files[j].size / chunkSize);
+        // console.log(files[j].size);
+        // var pro = 0;
+        // for (let i = 0; i < chunks; i++) {
+        //   const offset = i * chunkSize;
+        //   pro = ((i + 1) / chunks) * 100;
+        //   setProgress(pro);
+        conn.send({
+          // file: files[j].slice(offset, offset + chunkSize),
+          file: files,
+          name: files.name,
+          size: files.size,
+          type: "file",
+          // progress: ((i + 1) / chunks) * 100,
+        });
+        // }
+        // }
       });
     }
   };
@@ -91,9 +92,8 @@ const Send = () => {
         <input
           className="mt-5  rounded-sm w-56"
           type="file"
-          multiple
           onChange={(e) => {
-            setFiles(e.target.files);
+            setFiles(e.target.files[0]);
           }}
         />
         <button
