@@ -5,6 +5,7 @@ import { QrReader } from "react-qr-reader";
 
 const Send = () => {
   const [receiverId, setReceiverId] = useState("");
+  const [sent, setSent] = useState(false);
   const peerRef = useRef(null);
   const [scan, setScan] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -43,14 +44,19 @@ const Send = () => {
         }
       });
     }
+
+    setSent(true);
+    setTimeout(() => {
+      setSent(false);
+    }, 2000);
   };
 
   return (
     <div className="bg-[#eae8f2] h-screen w-screen flex items-center justify-center">
       <div className=" bg-[#ffffff] rounded-xl flex items-center justify-center flex-col py-5 px-5 shadow-lg ">
-        <div>Press Scan to Scan receiver qr-code</div>
+        {/* <div>Press Scan to Scan receiver qr-code</div> */}
         <button
-          className="bg-[#f4f4f4] w-36  shadow-md rounded-xl hover:bg-[#fc6b68] mt-5  hover:text-[#ffffff] hover:shadow-xl text-2xl py-2"
+          className="bg-[#f4f4f4] w-36  shadow-md rounded-xl hover:bg-[#fc6b68]   hover:text-[#ffffff] hover:shadow-xl text-2xl py-2"
           onClick={() => {
             setScan(!scan);
           }}
@@ -103,7 +109,7 @@ const Send = () => {
         >
           Send
         </button>
-        {progress == 100 && <div>Sent Succesfully</div>}
+        {sent && progress == 100 ? <div>Sent Succesfully</div> : <div></div>}
       </div>
     </div>
   );

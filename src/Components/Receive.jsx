@@ -5,6 +5,7 @@ import receiver from "./../assets/receiver.png";
 
 const Receive = () => {
   const [receiverId, setReceiverID] = useState(null);
+  const [receiving, setReceiving] = useState(false);
   const [receivedFile, setReceivedFile] = useState([]);
   const [chunk, setChunk] = useState([]);
   const [combined, setCombined] = useState(null);
@@ -23,6 +24,9 @@ const Receive = () => {
     peer.on("connection", (conn) => {
       var chunk = [];
       conn.on("data", (data) => {
+        if (data) {
+          setReceiving(true);
+        }
         chunk = [...chunk, data.file];
         setProgress(data.progress);
         if (data.progress == 100) {
@@ -63,6 +67,7 @@ const Receive = () => {
     const blob = new Blob([uint8Array]);
     const file = new File([blob], `received`);
     setReceivedFile((prevrec) => [...prevrec, file]);
+    setReceiving(false);
   };
 
   const downloadFile = () => {
@@ -88,19 +93,23 @@ const Receive = () => {
           />
         )}
         <p className="font-sans mt-2 text-xs">{receiverId}</p>
-        <div>Receiving....{progress}%</div>
-        <div className="font-sans mt-2">Files Received :</div>
+        {receiving && <div>Receiving....{progress}%</div>}
+        {receivedFile.length > 0 && (
+          <div className="font-sans mt-2">Files Received :</div>
+        )}
         {receivedName.length > 0 &&
           receivedName.map((e) => {
             return <div>{e}</div>;
           })}
 
-        <button
-          className="bg-[#f4f4f4] w-52  shadow-md rounded-xl hover:bg-[#fc6b68] mt-5  hover:text-[#ffffff] hover:shadow-xl text-2xl py-2"
-          onClick={downloadFile}
-        >
-          Download Files
-        </button>
+        {receivedFile.length > 0 && (
+          <button
+            className="bg-[#f4f4f4] w-52  shadow-md rounded-xl hover:bg-[#fc6b68] mt-5  hover:text-[#ffffff] hover:shadow-xl text-2xl py-2"
+            onClick={downloadFile}
+          >
+            Download Files
+          </button>
+        )}
       </div>
     </div>
   );
