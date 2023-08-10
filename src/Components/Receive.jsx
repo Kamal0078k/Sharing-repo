@@ -4,7 +4,7 @@ import circle1 from "./../assets/circle1.svg";
 import Peer from "peerjs";
 import circ from "./../assets/sendcirc.svg";
 import receiver from "./../assets/receiver.png";
-import Loader from "react_material_loading_spinner";
+import Spinner from "./Spinner";
 
 const Receive = () => {
   const [receiverId, setReceiverID] = useState(null);
@@ -94,7 +94,7 @@ const Receive = () => {
             size={156}
           />
         ) : (
-          <Loader color={"black"} thickness={5} size={30}></Loader>
+          <Spinner color={"black"} thickness={5} size={20} />
         )}
         <p className="font-sans mt-2 text-xs">{receiverId}</p>
         {receiving && <div>Receiving....{progress}%</div>}
