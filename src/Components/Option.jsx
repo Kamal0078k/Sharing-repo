@@ -21,11 +21,13 @@ const Option = () => {
           className="absolute top-[60%] left-[70%] md:top-[56%] h-[5rem] md:h-[10rem]  md:left-[54%] blur-lg opacity-60"
         />
         <div className="flex flex-col gap-4 justify-center items-center bg-gradient-to-br px-10 py-10 from-[rgba(255,255,255,0.2)] to-[rgba(0,0,0,0.03)]  rounded-2xl backdrop-blur-xl  z-10 absolute">
-          <img src={share} className="h-12 mb-5" />
-          <button className="bg-[#ffffff] w-32 h-10 rounded-xl ">
+          <img src={share} className="h-12" />
+          <div className="font-anton text-[#3c3c3c] ">METAFORA</div>
+          <hr className="h-2 w-20 mb-1 -mt-4"></hr>
+          <button className="bg-[#ffffff] w-44 h-12 rounded-xl font-pops text-xl ">
             <Link to="/send">Send</Link>
           </button>
-          <button className="bg-[#ffffff] w-32 h-10 rounded-xl">
+          <button className="bg-[#ffffff] w-44 h-12 rounded-xl text-xl font-pops">
             <Link to="/receive">Receive</Link>
           </button>
         </div>
