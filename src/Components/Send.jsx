@@ -18,7 +18,7 @@ const Send = () => {
       console.log(id);
     });
     peerRef.current = peer;
-  });
+  }, []);
 
   const sendFiles = () => {
     var conn = peerRef.current.connect(`${receiverId}`);
