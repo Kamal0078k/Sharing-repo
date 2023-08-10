@@ -23,12 +23,18 @@ const Option = () => {
           <img src={share} className="h-12" />
           <div className="font-anton text-[#3c3c3c] ">METAFORA</div>
           <hr className="h-2 w-20 mb-1 -mt-4"></hr>
-          <button className="bg-[#ffffff] w-44 h-12 rounded-xl font-pops text-xl ">
-            <Link to="/send">Send</Link>
-          </button>
-          <button className="bg-[#ffffff] w-44 h-12 rounded-xl text-xl font-pops">
-            <Link to="/receive">Receive</Link>
-          </button>
+
+          <Link to="/send">
+            <button className="bg-[#ffffff] w-44 h-12 rounded-xl font-pops text-xl ">
+              Send
+            </button>
+          </Link>
+
+          <Link to="/receive">
+            <button className="bg-[#ffffff] w-44 h-12 rounded-xl text-xl font-pops">
+              Receive
+            </button>
+          </Link>
         </div>
       </div>
     </>

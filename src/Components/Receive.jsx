@@ -4,6 +4,7 @@ import circle1 from "./../assets/circle1.svg";
 import Peer from "peerjs";
 import circ from "./../assets/sendcirc.svg";
 import receiver from "./../assets/receiver.png";
+import Loader from "react_material_loading_spinner";
 
 const Receive = () => {
   const [receiverId, setReceiverID] = useState(null);
@@ -84,7 +85,7 @@ const Receive = () => {
         className="sm:h-[20rem] opacity-60 h-[10rem]  absolute top-[25%] sm:top-[10%] right-[58%] sm:right-[53%] blur-lg"
       />
       <div className="absolute z-10 flex flex-col gap-4 justify-center items-center bg-gradient-to-br px-10 py-10 from-[rgba(255,255,255,0.2)] to-[rgba(0,0,0,0.03)]  rounded-2xl backdrop-blur-xl ">
-        {receiverId && (
+        {receiverId ? (
           <QRCode
             title="IDQR"
             value={receiverId}
@@ -92,6 +93,8 @@ const Receive = () => {
             fgColor={"#000000"}
             size={156}
           />
+        ) : (
+          <Loader color={"black"} thickness={5} size={30}></Loader>
         )}
         <p className="font-sans mt-2 text-xs">{receiverId}</p>
         {receiving && <div>Receiving....{progress}%</div>}
@@ -100,11 +103,11 @@ const Receive = () => {
         )}
         {receivedName.length > 0 &&
           receivedName.map((e) => {
-            return <div>{e}</div>;
+            return <div className="text-center">{e}</div>;
           })}
         {receivedFile.length > 0 && (
           <button
-            className="bg-[#f4f4f4] w-52  shadow-md rounded-xl hover:bg-[#fc6b68] mt-5  hover:text-[#ffffff] hover:shadow-xl text-2xl py-2"
+            className="bg-[#ffffff] w-44 h-12 rounded-xl font-pops text-xl "
             onClick={downloadFile}
           >
             Download Files

@@ -101,13 +101,15 @@ const Send = () => {
               setFiles(e.target.files);
             }}
           />
-          <button
-            // className="text-[#ffffff]  rounded-lg w-40 h-10 mt-5 bg-[#000000] border-2  hover:text-[#000000]  hover:bg-share"
-            className="bg-[#ffffff] w-44 h-12 rounded-xl font-pops text-xl "
-            onClick={sendFiles}
-          >
-            Send
-          </button>
+          {files && (
+            <button
+              // className="text-[#ffffff]  rounded-lg w-40 h-10 mt-5 bg-[#000000] border-2  hover:text-[#000000]  hover:bg-share"
+              className="bg-[#ffffff] w-44 h-12 rounded-xl font-pops text-xl "
+              onClick={sendFiles}
+            >
+              Send
+            </button>
+          )}
           {sent && progress == 100 ? <div>Sent Succesfully</div> : <div></div>}
         </div>
       </div>
