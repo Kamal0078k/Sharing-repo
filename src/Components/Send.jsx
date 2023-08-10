@@ -3,7 +3,7 @@ import Peer from "peerjs";
 // import QrReader from "react-qr-reader";
 import { QrReader } from "react-qr-reader";
 import circ from "./../assets/sendcirc.svg";
-import circ1 from "./../assets/sendcirc1.svg";
+import circ1 from "./../assets/circle.svg";
 
 const Send = () => {
   const [receiverId, setReceiverId] = useState("");
@@ -12,7 +12,6 @@ const Send = () => {
   const [scan, setScan] = useState(false);
   const [progress, setProgress] = useState(0);
   const [files, setFiles] = useState(null);
-  // const [file, setFile] = useState(null);
 
   useEffect(() => {
     var peer = new Peer();
@@ -58,11 +57,11 @@ const Send = () => {
       <div className="h-screen w-screen flex flex-col justify-center items-center relative">
         <img
           src={circ}
-          className="sm:h-[20rem] h-[10rem]  absolute top-[55%] sm:top-[50%] right-[58%] sm:right-[53%] blur-lg"
+          className="sm:h-[20rem] opacity-60 h-[10rem]  absolute top-[55%] sm:top-[50%] right-[58%] sm:right-[53%] blur-lg"
         />
         <img
           src={circ1}
-          className="h-[5rem] md:h-[10rem] absolute top-[30%] sm:top-[25%] right-[5%] blur-lg sm:right-[10%] md:right-[20%] lg:right-[30%] xl:right-[35%]"
+          className="h-[5rem] opacity-60 rotate-180 md:h-[10rem] absolute top-[30%] sm:top-[25%] right-[5%] blur-lg sm:right-[10%] md:right-[20%] lg:right-[30%] xl:right-[35%]"
         />
         <div className="absolute z-10 flex flex-col gap-4 justify-center items-center bg-gradient-to-br px-10 py-10 from-[rgba(255,255,255,0.2)] to-[rgba(0,0,0,0.03)]  rounded-2xl backdrop-blur-xl ">
           <button
@@ -109,6 +108,7 @@ const Send = () => {
           >
             Send
           </button>
+          {sent && progress == 100 ? <div>Sent Succesfully</div> : <div></div>}
         </div>
       </div>
     </>

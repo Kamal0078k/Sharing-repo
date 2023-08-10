@@ -7,8 +7,6 @@ const Receive = () => {
   const [receiverId, setReceiverID] = useState(null);
   const [receiving, setReceiving] = useState(false);
   const [receivedFile, setReceivedFile] = useState([]);
-  const [chunk, setChunk] = useState([]);
-  const [combined, setCombined] = useState(null);
 
   const [progress, setProgress] = useState(null);
 
@@ -36,14 +34,6 @@ const Receive = () => {
           setProgress(0);
           setReceivedName((prevname) => [...prevname, data.name]);
         }
-
-        // setProgress(data.progress);
-        // setReceivedName(data.name);
-
-        // const uint8Array = new Uint8Array(data.file);
-        // const blob = new Blob([uint8Array]);
-        // const file = new File([blob], `received`);
-        // setReceivedFile(file);
       });
     });
   }, []);
